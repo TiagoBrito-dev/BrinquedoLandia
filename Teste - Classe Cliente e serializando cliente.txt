@@ -1,0 +1,16 @@
+Listas.DeserializaListaCliente();
+foreach (Cliente obj in Listas.ListCliente)
+{
+Console.WriteLine(obj);
+}
+ClienteJuridico Cj = new ClienteJuridico();
+PreencheObjeto.InsereDadosObjeto<ClienteJuridico>(Cj);            
+ValidaObjeto.IncluirFisicoNaLista(Cj);
+Cj.InsereEnderco();
+Cj.SerializaEnderecos();
+Console.WriteLine("\n\n\n");
+foreach (Cliente obj in Listas.ListCliente)
+{
+Console.WriteLine(obj);
+}
+Listas.SerializaListaCliente();
