@@ -2,6 +2,7 @@
 using BrinquedoLandia.Entidades;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
@@ -14,7 +15,7 @@ namespace BrinquedoLandia.Serviços
     {
         public static void InsereDadosObjeto<T>(Object obj)
         {
-            
+
             bool listaComItems = false;
             do
             {
@@ -27,15 +28,7 @@ namespace BrinquedoLandia.Serviços
                     }
                     else
                     {
-                        if(campo.Name.Equals("Preco"))
-                        {
-                            Console.Write(campo.Name + ": "); campo.SetValue(obj, Console.ReadLine());
-                        }
-                        else
-                        {
-                            Console.Write(campo.Name + ": "); campo.SetValue(obj, Console.ReadLine());
-                        }
-                        
+                        Console.Write(campo.Name + ": "); campo.SetValue(obj, Console.ReadLine());
                     }
 
                 }
@@ -53,8 +46,8 @@ namespace BrinquedoLandia.Serviços
                     listaComItems = false;
 
                 }
-            } while (listaComItems == true);            
-        }      
+            } while (listaComItems == true);
+        }
 
     }
 }

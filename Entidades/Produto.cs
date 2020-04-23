@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
+using BrinquedoLandia.Enums;
 
 namespace BrinquedoLandia.Entidades
 {
@@ -12,24 +14,38 @@ namespace BrinquedoLandia.Entidades
     {
         [Required(ErrorMessage ="Erro: Nome do produto é obrigatorio.", AllowEmptyStrings = false)]
         public string NomeProduto { get; set; }
+
         [Required(ErrorMessage = "Erro: Preço é obrigatorio.", AllowEmptyStrings = false)]
-        [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Erro: Invalid price")] //permite apenas duas casas decimais
-        public double Preco { get; set; }
+        [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid price")] // nao permite mais de duas casas decimais
+        [DataType(DataType.Currency)]
+        public string Preco { get; set; }
+
+        public string Categoria { get; set; }
 
         public Produto()
         {
         }
 
-        public Produto(string nomeProduto, double preco)
+        public Produto(string nomeProduto, string preco)
         {
             NomeProduto = nomeProduto;
             Preco = preco;
         }
 
+        public double PrecoDouble()
+        {
+            return double.Parse(Preco, CultureInfo.InvariantCulture);
+        }
+
+        public CategoriaProduto CategoriaEnum()
+        {
+            return (CategoriaProduto)Enum.Parse(typeof(CategoriaProduto), Categoria);
+        }
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("Produto: " + NomeProduto + " - Preço: " + Preco.ToString("F2", CultureInfo.InvariantCulture) + " R$");
+            sb.AppendLine("Produto: " + NomeProduto + " - Categoria: " + CategoriaEnum() + " - Preço: " + PrecoDouble().ToString("F2", CultureInfo.InvariantCulture) + " $");
             return sb.ToString();
         }
     }

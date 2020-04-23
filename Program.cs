@@ -3,6 +3,7 @@ using BrinquedoLandia.Entidades;
 using BrinquedoLandia.Serviços;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -23,6 +24,7 @@ namespace BrinquedoLandia
                 Produto P = new Produto();
                 PreencheObjeto.InsereDadosObjeto<Produto>(P);
                 Console.WriteLine(P.ToString());
+                
                 
             }
 
