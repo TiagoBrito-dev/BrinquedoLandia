@@ -1,5 +1,6 @@
 ﻿using BrinquedoLandia.DataBase;
 using BrinquedoLandia.Entidades;
+using BrinquedoLandia.Interfaces;
 using BrinquedoLandia.Serviços;
 using System;
 using System.Collections.Generic;
@@ -21,18 +22,27 @@ namespace BrinquedoLandia
         {
             try
             {
-                Listas.DeserializaListaProduto();
-                foreach(Produto obj in Listas.ListProduto)
-                {
-                    Console.WriteLine(obj.ToString());
-                }
-                
-                CadastrarProduto.InserirProdutoNaLista();
 
-                foreach (Produto obj in Listas.ListProduto)
-                {
-                    Console.WriteLine(obj.ToString());
-                }
+                ClienteJuridico C1 = new ClienteJuridico("Cenario Brasil", "beto@cenariobrasil.com", "123456", "11111111111111");
+                Console.WriteLine(C1);
+
+                Produto P1 = new Produto("Televisor", "1250.00", "ELETRONICOS");
+                Produto P2 = new Produto("Bicicleta", "600.00", "BRINQUEDOS");
+                Produto P3 = new Produto("XBOX ONE", "1280.00", "ELETRONICOS");
+                Console.WriteLine(P1);
+                Console.WriteLine(P2);
+                Console.WriteLine(P3);
+
+
+                Pedido P = new Pedido(C1, Enums.EstatusPedido.FATURADO);
+               
+                P.ListItems.Add(new ItemPedido(P1, 1));
+                P.ListItems.Add(new ItemPedido(P2, 1));
+                P.ListItems.Add(new ItemPedido(P3, 1));
+
+                ServicoDePedido Sp = new ServicoDePedido(P, new IClienteJuridico());
+                Console.WriteLine(Sp.PreencheNotaFiscal());
+                
 
             }
 

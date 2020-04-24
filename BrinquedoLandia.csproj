@@ -56,6 +56,9 @@
     <Compile Include="Enums\CategoriaProduto.cs" />
     <Compile Include="Enums\EstatusPedido.cs" />
     <Compile Include="Exeções de Dominio\Execoes.cs" />
+    <Compile Include="Interfaces\IClienteFisico.cs" />
+    <Compile Include="Interfaces\IClienteJuridico.cs" />
+    <Compile Include="Interfaces\ITipoCliente.cs" />
     <Compile Include="MetodosExtensivos\Extensivos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,6 +66,7 @@
     <Compile Include="Serviços\DeserializarObjeto.cs" />
     <Compile Include="Serviços\PreencheObjeto.cs" />
     <Compile Include="Serviços\SerializaObjeto.cs" />
+    <Compile Include="Serviços\ServicoDePedido.cs" />
     <Compile Include="Serviços\ValidaObjeto.cs" />
   </ItemGroup>
   <ItemGroup>

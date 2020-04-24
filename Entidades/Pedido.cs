@@ -1,4 +1,5 @@
 ﻿using BrinquedoLandia.Enums;
+using BrinquedoLandia.Serviços;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,21 +12,25 @@ namespace BrinquedoLandia.Entidades
     {
         public Cliente Comprador { get; set; }
         public EstatusPedido Estatus { get; set; }
-        public List<ItemPedido> ListItems { get; set; }
+        public List<ItemPedido> ListItems { get; set; } = new List<ItemPedido>();
+        public DateTime DataDaCompra { get; set; }
 
         public Pedido()
         {
+            
         }
 
         public Pedido(Cliente comprador, EstatusPedido estatus)
         {
             Comprador = comprador;
             Estatus = estatus;
+            DataDaCompra = DateTime.Now;
         }
 
-        public void NotaFiscal()
+        public string NotaFiscal()
         {
-
+            ServicoDePedido Sp = new ServicoDePedido();
+            return Sp.PreencheNotaFiscal();
         }
     }
 }
