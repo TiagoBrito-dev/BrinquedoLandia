@@ -26,10 +26,11 @@ namespace BrinquedoLandia.Entidades
         {
         }
 
-        public Produto(string nomeProduto, string preco)
+        public Produto(string nomeProduto, string preco, string categoria)
         {
             NomeProduto = nomeProduto;
             Preco = preco;
+            Categoria = categoria;
         }
 
         public double PrecoDouble()

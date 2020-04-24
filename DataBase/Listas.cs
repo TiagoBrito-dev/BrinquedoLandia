@@ -16,7 +16,7 @@ namespace BrinquedoLandia.DataBase
 
         public static void DeserializaListaCliente()
         {
-            var teste = DeserializarObjeto.DeserializaCliente(ListCliente);
+            var teste = DeserializarObjeto.DeserializaLista(ListCliente, "Cliente");
             foreach(Cliente obj in teste)
             {
                 ListCliente.Add(obj);
@@ -31,7 +31,7 @@ namespace BrinquedoLandia.DataBase
 
         public static void DeserializaListaProduto()
         {
-            var teste = DeserializarObjeto.DeserializaCliente(ListProduto);
+            var teste = DeserializarObjeto.DeserializaLista(ListProduto, "Produto");
             foreach (Produto obj in teste)
             {
                 ListProduto.Add(obj);
@@ -43,7 +43,5 @@ namespace BrinquedoLandia.DataBase
         {
             SerializaObjeto.Serializar<Produto>(Listas.ListProduto);
         }
-
-
     }
 }

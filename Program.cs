@@ -21,11 +21,19 @@ namespace BrinquedoLandia
         {
             try
             {
-                Produto P = new Produto();
-                PreencheObjeto.InsereDadosObjeto<Produto>(P);
-                Console.WriteLine(P.ToString());
+                Listas.DeserializaListaProduto();
+                foreach(Produto obj in Listas.ListProduto)
+                {
+                    Console.WriteLine(obj.ToString());
+                }
                 
-                
+                CadastrarProduto.InserirProdutoNaLista();
+
+                foreach (Produto obj in Listas.ListProduto)
+                {
+                    Console.WriteLine(obj.ToString());
+                }
+
             }
 
             catch(Exception e)

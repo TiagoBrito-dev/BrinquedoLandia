@@ -26,6 +26,10 @@ namespace BrinquedoLandia.Serviços
                     {
                         campo.SetValue(obj, new List<Endereco>());
                     }
+                    else if(campo.Name.Equals("Categoria"))
+                    {
+                        campo.SetValue(obj, "NOCATEGORY");
+                    }
                     else
                     {
                         Console.Write(campo.Name + ": "); campo.SetValue(obj, Console.ReadLine());
@@ -48,6 +52,6 @@ namespace BrinquedoLandia.Serviços
                 }
             } while (listaComItems == true);
         }
-
+        
     }
 }

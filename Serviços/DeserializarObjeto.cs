@@ -11,32 +11,55 @@ namespace BrinquedoLandia.Serviços
 {
     static class DeserializarObjeto
     {
-        public static IEnumerable<Object> DeserializaCliente(IEnumerable<Object> ObjList)
+        public static IEnumerable<Object> DeserializaLista(IEnumerable<Object> ObjList, string tipo)
         {
-            List<Cliente> ListaAuxiliar = new List<Cliente>();
-            string path = @"C:\Users\User\Google Drive\Projetos C#\BrinquedoLandia\ObjetosSerializados\" + ObjList.GetType().Name + ".json";
-            using (StreamReader Sr = new StreamReader(path))
+            
+            if(tipo == "Cliente")
             {
-                JavaScriptSerializer Js = new JavaScriptSerializer();
-                while (!Sr.EndOfStream)
-                {                    
-                    string aux = Sr.ReadLine();
-                    if(aux.Contains("Cpf"))
+                List<Cliente> ListaAuxiliar = new List<Cliente>();
+                string path = @"C:\Users\User\Google Drive\Projetos C#\BrinquedoLandia\ObjetosSerializados\" + "ListaCliente" + ".json";
+                using (StreamReader Sr = new StreamReader(path))
+                {
+                    JavaScriptSerializer Js = new JavaScriptSerializer();
+                    while (!Sr.EndOfStream)
                     {
-                        ClienteFisico obj = (ClienteFisico)Js.Deserialize(aux, typeof(ClienteFisico));
-                        ListaAuxiliar.Add(obj);
+                        string aux = Sr.ReadLine();
+                        if (aux.Contains("Cpf"))
+                        {
+                            ClienteFisico obj = (ClienteFisico)Js.Deserialize(aux, typeof(ClienteFisico));
+                            ListaAuxiliar.Add(obj);
+                        }
+                        else if (aux.Contains("Cnpj"))
+                        {
+                            ClienteJuridico obj = (ClienteJuridico)Js.Deserialize(aux, typeof(ClienteJuridico));
+                            ListaAuxiliar.Add(obj);
+                        }
+
                     }
-                    else if(aux.Contains("Cnpj"))
-                    {
-                        ClienteJuridico obj = (ClienteJuridico)Js.Deserialize(aux, typeof(ClienteJuridico));
-                        ListaAuxiliar.Add(obj);
-                    }                 
-                   
+
                 }
 
+                return ListaAuxiliar.ToList();
             }
+            else
+            {
+                List<Produto> ListaAuxiliar = new List<Produto>();
+                string path = @"C:\Users\User\Google Drive\Projetos C#\BrinquedoLandia\ObjetosSerializados\" + "ListaProduto" + ".json";
+                using (StreamReader Sr = new StreamReader(path))
+                {
+                    JavaScriptSerializer Js = new JavaScriptSerializer();
+                    while (!Sr.EndOfStream)
+                    {
+                        string aux = Sr.ReadLine();
+                        Produto obj = (Produto)Js.Deserialize(aux, typeof(Produto));
+                        ListaAuxiliar.Add(obj);
+                    }
 
-            return ListaAuxiliar.ToList();
+                }
+
+                return ListaAuxiliar.ToList();
+            }
+            
         }
     }
 }

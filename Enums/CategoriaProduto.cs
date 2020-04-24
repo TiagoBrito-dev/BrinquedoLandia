@@ -8,8 +8,9 @@ namespace BrinquedoLandia.Enums
 {
     enum CategoriaProduto
     {
-        BOA = 0,
-        MEDIA = 1,
-        EXCELENTE = 2
+        ELETRONICOS = 0,
+        JOGOS = 1,
+        BRINQUEDOS = 2,
+        NOCATEGORY = 3
     };
 }
