@@ -56,5 +56,10 @@ namespace BrinquedoLandia.Entidades
         {
             SerializaObjeto.Serializar<Endereco>(ListEnd);
         }
+
+        public override string ExibeNotaFiscalCliente(Pedido pedido)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

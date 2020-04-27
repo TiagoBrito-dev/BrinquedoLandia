@@ -10,7 +10,7 @@ using BrinquedoLandia.Enums;
 
 namespace BrinquedoLandia.Entidades
 {
-    class Produto
+    public class Produto
     {
         [Required(ErrorMessage ="Erro: Nome do produto é obrigatorio.", AllowEmptyStrings = false)]
         public string NomeProduto { get; set; }

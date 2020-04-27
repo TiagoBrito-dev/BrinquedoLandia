@@ -59,6 +59,9 @@
     <Compile Include="Interfaces\IClienteFisico.cs" />
     <Compile Include="Interfaces\IClienteJuridico.cs" />
     <Compile Include="Interfaces\ITipoCliente.cs" />
+    <Compile Include="Menus\MenuCliente.cs" />
+    <Compile Include="Menus\MenuPrincipal.cs" />
+    <Compile Include="Menus\MenuProduto.cs" />
     <Compile Include="MetodosExtensivos\Extensivos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

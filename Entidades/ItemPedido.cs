@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BrinquedoLandia.Entidades
 {
-    class ItemPedido
+    public class ItemPedido
     {
         public Produto Prod { get; set; }
         public int Quantidade { get; set; }

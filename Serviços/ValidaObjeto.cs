@@ -20,7 +20,7 @@ namespace BrinquedoLandia.Serviços
             return resultadoValidacao;
         }
 
-        public static void IncluirFisicoNaLista(Object obj)
+        public static void IncluirClienteNaLista(Object obj)
         {
             List<ClienteFisico> ListFisico = Listas.ListCliente.Where(X => X is ClienteFisico).Select(X => X as ClienteFisico).ToList();
             List<ClienteJuridico> ListJuridico = Listas.ListCliente.Where(X => X is ClienteJuridico).Select(X => X as ClienteJuridico).ToList();            

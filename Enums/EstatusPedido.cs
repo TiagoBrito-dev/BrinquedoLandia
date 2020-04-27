@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BrinquedoLandia.Enums
 {
-    enum EstatusPedido
+    public enum EstatusPedido
     {
         PENDENTE = 0,
         FATURADO = 1,

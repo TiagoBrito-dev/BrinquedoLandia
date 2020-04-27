@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BrinquedoLandia.Enums
 {
-    enum CategoriaProduto
+    public enum CategoriaProduto
     {
         ELETRONICOS = 0,
         JOGOS = 1,

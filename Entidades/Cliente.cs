@@ -22,6 +22,7 @@ namespace BrinquedoLandia.Entidades
         [StringLength(6, MinimumLength = 6, ErrorMessage = "Erro: Senha deve possuir 6 digitos")]
         public string Senha { get; set; }
         public List<Endereco> ListEnd { get; set; } = new List<Endereco>();
+        public List<Pedido> ListPedido { get; set; } = new List<Pedido>();
 
         protected Cliente()
         {
@@ -42,5 +43,6 @@ namespace BrinquedoLandia.Entidades
         public abstract void InsereEnderco();
         public abstract void ExibeEndereco();
         public abstract void SerializaEnderecos();
+        public abstract string ExibeNotaFiscalCliente(Pedido pedido);
     }
 }

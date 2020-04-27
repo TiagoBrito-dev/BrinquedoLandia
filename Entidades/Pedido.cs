@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace BrinquedoLandia.Entidades
 {
-    class Pedido
+    public class Pedido
     {
-        public Cliente Comprador { get; set; }
+        
         public EstatusPedido Estatus { get; set; }
         public List<ItemPedido> ListItems { get; set; } = new List<ItemPedido>();
         public DateTime DataDaCompra { get; set; }
@@ -20,9 +20,8 @@ namespace BrinquedoLandia.Entidades
             
         }
 
-        public Pedido(Cliente comprador, EstatusPedido estatus)
-        {
-            Comprador = comprador;
+        public Pedido(EstatusPedido estatus)
+        {            
             Estatus = estatus;
             DataDaCompra = DateTime.Now;
         }
@@ -31,6 +30,11 @@ namespace BrinquedoLandia.Entidades
         {
             ServicoDePedido Sp = new ServicoDePedido();
             return Sp.PreencheNotaFiscal();
+        }
+
+        public void TotalPedido()
+        {
+            double total = ListItems.Sum(X => X.TotalItem());
         }
     }
 }

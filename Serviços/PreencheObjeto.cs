@@ -26,6 +26,10 @@ namespace BrinquedoLandia.Serviços
                     {
                         campo.SetValue(obj, new List<Endereco>());
                     }
+                    else if (campo.Name.Equals("ListPedido"))
+                    {
+                        campo.SetValue(obj, new List<Pedido>());
+                    }
                     else if(campo.Name.Equals("Categoria"))
                     {
                         campo.SetValue(obj, "NOCATEGORY");

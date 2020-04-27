@@ -1,4 +1,5 @@
-﻿using BrinquedoLandia.MetodosExtensivos;
+﻿using BrinquedoLandia.Interfaces;
+using BrinquedoLandia.MetodosExtensivos;
 using BrinquedoLandia.Serviços;
 using System;
 using System.Collections.Generic;
@@ -59,6 +60,16 @@ namespace BrinquedoLandia.Entidades
         public override void SerializaEnderecos()
         {
             SerializaObjeto.Serializar<Endereco>(ListEnd);
+        }
+
+        public override string ExibeNotaFiscalCliente(Pedido pedido)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("---Dados Comprador---");
+            sb.AppendLine("Nome Comprador: " + NomeOuRazaoSocial);
+            sb.AppendLine("Cpf: " + Cpf.Cpf());
+            ServicoDePedido Sp = new ServicoDePedido(pedido, new IClienteFisico());
+            return sb.ToString() + "\n" + Sp.PreencheNotaFiscal();
         }
     }
 }
