@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BrinquedoLandia.Entidades;
+using BrinquedoLandia.Serviços;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,33 +17,30 @@ namespace BrinquedoLandia.Menus
             while (opcaoCadastroProduto < 3)
             {
                 Console.WriteLine("--CADASTRO DE PRODUTOS:--");
-                Console.WriteLine("1- CLIENTE FISICO: ");
-                Console.WriteLine("2- CLIENTE JURIDICO: ");
-                Console.WriteLine("3- VOLTAR: ");
-                Console.Write("OPÇÃO: "); opcaoCadastroCliente = int.Parse(Console.ReadLine());
+                Console.WriteLine("1- CADASTRAR PRODUTO: ");
+                Console.WriteLine("2- VOLTAR: ");
+                Console.Write("OPÇÃO: "); opcaoCadastroProduto = int.Parse(Console.ReadLine());
 
-                switch (opcaoCadastroCliente)
+                switch (opcaoCadastroProduto)
                 {
                     case 1:
-                        ClienteFisico Cf = new ClienteFisico();
-                        PreencheObjeto.InsereDadosObjeto<ClienteFisico>(Cf);
-                        opcaoCadastroCliente = 0;
+                        Produto Pro = new Produto();
+                        PreencheObjeto.InsereDadosObjeto<Produto>(Pro);
+                        opcaoCadastroProduto = 0;
                         break;
 
                     case 2:
-                        ClienteJuridico Cj = new ClienteJuridico();
-                        PreencheObjeto.InsereDadosObjeto<ClienteJuridico>(Cj);
-                        opcaoCadastroCliente = 0;
+                        opcaoCadastroProduto = 0;
                         break;
-                    case 3:
-                        opcaoCadastroCliente = 3;
+
+                    default:
+                        opcaoCadastroProduto = 0;
                         break;
                 }
             }
 
             return 0;
-
         }
     }
 }
-}
+

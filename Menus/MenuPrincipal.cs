@@ -29,7 +29,10 @@ namespace BrinquedoLandia.Menus
                         break;
 
                     case 2:
-
+                        MenuProduto.CadastroProduto();
+                        break;
+                    case 3:
+                        break;
                 }
             }
         }   
