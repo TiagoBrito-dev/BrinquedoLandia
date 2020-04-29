@@ -15,7 +15,7 @@ namespace BrinquedoLandia.Menus
         {
             int opcaoCadastroCliente = 0;
 
-            while(opcaoCadastroCliente < 3)
+            while (opcaoCadastroCliente < 3)
             {
                 Console.WriteLine("--CADASTRO DE CLIENTES:--");
                 Console.WriteLine("1- CLIENTE FISICO: ");
@@ -36,9 +36,11 @@ namespace BrinquedoLandia.Menus
                     case 2:
                         ClienteJuridico Cj = new ClienteJuridico();
                         PreencheObjeto.InsereDadosObjeto<ClienteJuridico>(Cj);
+                        ValidaObjeto.IncluirClienteNaLista(Cj);
                         Listas.SerializaListaCliente();
                         opcaoCadastroCliente = 0;
                         break;
+
                     case 3:
                         opcaoCadastroCliente = 3;
                         break;
@@ -53,22 +55,23 @@ namespace BrinquedoLandia.Menus
         {
             int opcaoConsultaCliente = 0;
 
-            while(opcaoConsultaCliente < 4)
+            while (opcaoConsultaCliente < 5)
             {
                 Console.WriteLine("--CONSULTAR CLIENTE--");
                 Console.WriteLine("1- POR NOME: ");
                 Console.WriteLine("2- POR CPF OU CNPJ: ");
                 Console.WriteLine("3- POR EMAIL: ");
-                Console.WriteLine("4- VOLTAR: ");
+                Console.WriteLine("4- MOSTRAR TODOS: ");
+                Console.WriteLine("5- VOLTAR: ");
                 Console.Write("OPÇÃO: "); opcaoConsultaCliente = int.Parse(Console.ReadLine());
 
-                switch(opcaoConsultaCliente)
+                switch (opcaoConsultaCliente)
                 {
                     case 1:
                         Console.Write("INFORME O NOME: "); string nome = Console.ReadLine();
-                        var aux = Listas.ListCliente.Where(X => X.NomeOuRazaoSocial.Contains(nome)).Select(X=> X).DefaultIfEmpty(new ClienteFisico() { NomeOuRazaoSocial = "CLIENTE INEXISTENTE" });
+                        var aux = Listas.ListCliente.Where(X => X.NomeOuRazaoSocial.Contains(nome)).Select(X => X).DefaultIfEmpty(new ClienteFisico() { NomeOuRazaoSocial = "CLIENTE INEXISTENTE", Cpf = "00000000000", Email = "invalido@invalido.com", Senha = "000000" });
                         string cliente = aux.First().ToString();
-                        if(cliente.Contains("CLIENTE INEXISTENTE"))
+                        if (cliente.Contains("CLIENTE INEXISTENTE"))
                         {
                             Console.WriteLine("CLIENTE INEXISTENTE");
                         }
@@ -76,29 +79,47 @@ namespace BrinquedoLandia.Menus
                         {
                             Console.WriteLine(cliente);
                         }
+                        opcaoConsultaCliente = 0;
                         break;
 
                     case 2:
                         Console.Write("INFORME O CPF OU CNPJ: "); string cpf = Console.ReadLine();
                         List<ClienteFisico> ListFisico = Listas.ListCliente.Where(X => X is ClienteFisico).Select(X => X as ClienteFisico).ToList();
                         List<ClienteJuridico> ListJuridico = Listas.ListCliente.Where(X => X is ClienteJuridico).Select(X => X as ClienteJuridico).ToList();
-                        if(cpf.Length == 11)
+                        if (cpf.Length == 11)
                         {
-                            string cliente2 = ListFisico.Where(X => X.Cpf.Equals(cpf)).Select(X => X.ToString()).DefaultIfEmpty("CPF INEXISTENTE").ToString();
-                            Console.WriteLine(cliente2);
+                            var cliente2 = ListFisico.Where(X => X.Cpf.Equals(cpf)).Select(X => X).DefaultIfEmpty(new ClienteFisico() { NomeOuRazaoSocial = "CLIENTE INEXISTENTE", Cpf = "00000000000", Email = "invalido@invalido.com", Senha = "000000" });
+                            string clienteString = cliente2.First().ToString();
+                            if(clienteString.Contains("invalido"))
+                            {
+                                Console.WriteLine("CLIENTE INEXISTENTE");
+                            }
+                            else
+                            {
+                                Console.WriteLine(clienteString);
+                            }
                         }
                         else
                         {
-                            string cliente2 = ListJuridico.Where(X => X.Cnpj.Equals(cpf)).Select(X => X.ToString()).DefaultIfEmpty("CNPJ INEXISTENTE").ToString();
-                            Console.WriteLine(cliente2);
+                            var cliente2 = ListJuridico.Where(X => X.Cnpj.Equals(cpf)).Select(X => X).DefaultIfEmpty(new ClienteJuridico() { NomeOuRazaoSocial = "CLIENTE INEXISTENTE", Cnpj = "00000000000000", Email = "invalido@invalido.com", Senha = "000000" });
+                            string clienteString = cliente2.First().ToString();
+                            if (clienteString.Contains("invalido"))
+                            {
+                                Console.WriteLine("CLIENTE INEXISTENTE");
+                            }
+                            else
+                            {
+                                Console.WriteLine(clienteString);
+                            }
                         }
+                        opcaoConsultaCliente = 0;
                         break;
 
                     case 3:
                         Console.Write("INFORME O EMAIL: "); string email = Console.ReadLine();
-                        var aux3 = Listas.ListCliente.Where(X => X.Email.Contains(email)).Select(X => X).DefaultIfEmpty(new ClienteFisico() { NomeOuRazaoSocial = "EMAIL INEXISTENTE" });
+                        var aux3 = Listas.ListCliente.Where(X => X.Email.Contains(email)).Select(X => X).DefaultIfEmpty(new ClienteFisico() { NomeOuRazaoSocial = "CLIENTE INEXISTENTE", Cpf = "00000000000", Email = "invalido@invalido.com", Senha = "000000" });
                         string cliente3 = aux3.First().ToString();
-                        if (cliente3.Contains(email))
+                        if (cliente3.Contains("invalido"))
                         {
                             Console.WriteLine("CLIENTE INEXISTENTE");
                         }
@@ -106,15 +127,25 @@ namespace BrinquedoLandia.Menus
                         {
                             Console.WriteLine(cliente3);
                         }
+                        opcaoConsultaCliente = 0;
                         break;
 
+                    case 4:
+                        Console.WriteLine("--TODOS CLIENTES--");
+                        foreach(Cliente obj in Listas.ListCliente)
+                        {
+                            Console.WriteLine(obj.ToString() + "\n");
+                        }
+                        opcaoConsultaCliente = 0;
+                        break;
 
+                    default:
+                        opcaoConsultaCliente = 5;
+                        break;
                 }
             }
-            
 
-            
-
+            return 0;
 
         }
     }
