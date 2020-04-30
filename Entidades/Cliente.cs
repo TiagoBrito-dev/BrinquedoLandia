@@ -42,7 +42,6 @@ namespace BrinquedoLandia.Entidades
 
         public abstract void InsereEnderco();
         public abstract void ExibeEndereco();
-        public abstract void SerializaEnderecos();
-        public abstract string ExibeNotaFiscalCliente(Pedido pedido);
+        public abstract void SerializaEnderecos();        
     }
 }

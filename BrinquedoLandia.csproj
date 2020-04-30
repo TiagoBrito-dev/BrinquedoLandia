@@ -60,6 +60,7 @@
     <Compile Include="Interfaces\IClienteJuridico.cs" />
     <Compile Include="Interfaces\ITipoCliente.cs" />
     <Compile Include="Menus\MenuCliente.cs" />
+    <Compile Include="Menus\MenuNotaFiscal.cs" />
     <Compile Include="Menus\MenuPrincipal.cs" />
     <Compile Include="Menus\MenuProduto.cs" />
     <Compile Include="MetodosExtensivos\Extensivos.cs" />

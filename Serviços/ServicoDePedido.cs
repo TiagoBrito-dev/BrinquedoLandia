@@ -12,26 +12,40 @@ namespace BrinquedoLandia.Serviços
 {
     class ServicoDePedido
     {
+        public Cliente Cli { get; set; }
         public Pedido Ped { get; set; }
+
         public ITipoCliente TipoCliente;
 
         public ServicoDePedido()
         {
         }
 
-        public ServicoDePedido(Pedido ped, ITipoCliente tipoCliente)
+        public ServicoDePedido(Cliente cli, Pedido ped)
         {
+            Cli = cli;
             Ped = ped;
-            TipoCliente = tipoCliente;
+            if(cli is ClienteFisico)
+            {
+                TipoCliente = new IClienteFisico();
+            }
+            else
+            {
+                TipoCliente = new IClienteJuridico();
+            }            
         }
 
         public string PreencheNotaFiscal()
         {
-
             double totalPedido = Ped.ListItems.Sum(X => X.TotalItem());
             double desconto = TipoCliente.Desconto(Ped.ListItems.Sum(X => X.TotalItem()));
             double imposto = TipoCliente.Imposto(Ped.ListItems.Sum(X => X.TotalItem()));
+            string cpfoucnpj = (Cli is ClienteFisico) ? Cli.GetType().GetProperty("Cpf").GetValue(Cli).ToString() : Cli.GetType().GetProperty("Cnpj").GetValue(Cli).ToString();
+            string definido = (cpfoucnpj.Length == 11) ? cpfoucnpj.Cpf() : cpfoucnpj.Cnpj();
             StringBuilder sb = new StringBuilder();
+            sb.AppendLine("--DADOS DO COMPRADOR--");
+            sb.AppendLine("Nome: " + Cli.NomeOuRazaoSocial);
+            sb.AppendLine("CPF / CNPJ: " + definido);
             sb.AppendLine("--Nota Fiscal do Pedido---");
             sb.AppendLine("Data da compra: " + Ped.DataDaCompra.ToShortDateString());
             sb.AppendLine("Estatus: " + Ped.Estatus.ToString());

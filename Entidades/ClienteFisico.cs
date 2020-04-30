@@ -61,15 +61,6 @@ namespace BrinquedoLandia.Entidades
         {
             SerializaObjeto.Serializar<Endereco>(ListEnd);
         }
-
-        public override string ExibeNotaFiscalCliente(Pedido pedido)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("---Dados Comprador---");
-            sb.AppendLine("Nome Comprador: " + NomeOuRazaoSocial);
-            sb.AppendLine("Cpf: " + Cpf.Cpf());
-            ServicoDePedido Sp = new ServicoDePedido(pedido, new IClienteFisico());
-            return sb.ToString() + "\n" + Sp.PreencheNotaFiscal();
-        }
+        
     }
 }

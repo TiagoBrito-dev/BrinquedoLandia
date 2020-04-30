@@ -48,21 +48,30 @@ namespace BrinquedoLandia.Menus
         {
             int opcaoConsultaProduto = 0;
 
-            while (opcaoConsultaProduto < 4)
+            while (opcaoConsultaProduto < 5)
             {
                 Console.WriteLine("--CONSULTA DE PRODUTOS:--");
                 Console.WriteLine("1- CONSULTA POR NOME: ");
                 Console.WriteLine("2- CONSULTA POR PREÇO: ");
                 Console.WriteLine("3- CONSULTA POR CATEGORIA: ");
-                Console.WriteLine("4- VOLTAR: ");
+                Console.WriteLine("4- CONSULTAR TODOS: ");
+                Console.WriteLine("5- VOLTAR: ");
                 Console.Write("OPÇÃO: "); opcaoConsultaProduto = int.Parse(Console.ReadLine());
 
                 switch (opcaoConsultaProduto)
                 {
                     case 1:
-                        Console.Write("INFORME O NOME DO PRODUTO"); string nomeProduto = Console.ReadLine();
-                        string produto = Listas.ListProduto.Where(X => X.NomeProduto == nomeProduto).Select(X => X.ToString()).DefaultIfEmpty("PRODUTO INEXISTENTE").ToString();
-                        Console.WriteLine("--PRODUTO--\n" + produto);
+                        Console.Write("INFORME O NOME DO PRODUTO: "); string nomeProduto = Console.ReadLine();
+                        var produto = Listas.ListProduto.Where(X => X.NomeProduto == nomeProduto).Select(X => X).DefaultIfEmpty(new Produto("INVALIDO", "0.00", "NOCATEGORY"));
+                        string produtoNome = produto.First().ToString();
+                        if(produtoNome.Contains("INVALIDO"))
+                        {
+                            Console.WriteLine("PRODUTO INEXISTENTE");
+                        }
+                        else
+                        {
+                            Console.WriteLine(produtoNome);
+                        }
                         opcaoConsultaProduto = 0;
                         break;
 
@@ -109,8 +118,16 @@ namespace BrinquedoLandia.Menus
                         opcaoConsultaProduto = 0;
                         break;
 
+                    case 4:
+                        Console.WriteLine("--TODOS PRODUTOS--");
+                        foreach(Produto obj in Listas.ListProduto)
+                        {
+                            Console.WriteLine(obj.ToString());
+                        }
+                        break;
+
                     default:
-                        opcaoConsultaProduto = 4;
+                        opcaoConsultaProduto = 5;
                         break;
                 }
             }

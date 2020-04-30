@@ -25,6 +25,9 @@ namespace BrinquedoLandia
                 Listas.DeserializaListaCliente();
                 Listas.DeserializaListaProduto();
                 Menus.MenuPrincipal.Principal();
+                //var teste = Listas.ListCliente.Find(X => X.NomeOuRazaoSocial.Equals("ANDREZA CAMPOS"));
+                //ServicoDePedido Sp = new ServicoDePedido(teste, teste.ListPedido.First());
+                //Console.WriteLine(Sp.PreencheNotaFiscal());
 
 
             }

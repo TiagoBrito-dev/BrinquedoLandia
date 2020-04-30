@@ -26,10 +26,9 @@ namespace BrinquedoLandia.Entidades
             DataDaCompra = DateTime.Now;
         }
 
-        public string NotaFiscal()
+        public string NotaFiscal(string obj)
         {
-            ServicoDePedido Sp = new ServicoDePedido();
-            return Sp.PreencheNotaFiscal();
+            return obj;
         }
 
         public void TotalPedido()
